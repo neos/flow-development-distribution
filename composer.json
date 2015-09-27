@@ -16,10 +16,8 @@
         "bin-dir": "bin"
     },
     "require": {
-        "typo3/flow": "dev-master",
-        "typo3/welcome": "dev-master",
-        "typo3/fluid": "@dev",
-        "typo3/eel": "@dev"
+        "neos/flow-development-collection": "dev-master",
+        "typo3/welcome": "dev-master"
     },
     "require-dev": {
         "typo3/kickstart": "dev-master",
