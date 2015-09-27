@@ -1,6 +1,6 @@
 {
-    "name": "typo3/flow-base-distribution",
-    "description": "Flow Base Distribution",
+    "name": "typo3/flow-development-distribution",
+    "description": "Flow Development Distribution",
     "license": "MIT",
     "support": {
         "email": "hello@neos.io",
@@ -9,7 +9,7 @@
         "wiki": "https://discuss.neos.io/c/the-neos-project/project-documentation",
         "issues": "https://jira.neos.io/browse/FLOW",
         "docs": "http://flowframework.readthedocs.org/",
-        "source": "https://github.com/neos/flow-base-distribution"
+        "source": "https://github.com/neos/flow-development-distribution"
     },
     "config": {
         "vendor-dir": "Packages/Libraries",
