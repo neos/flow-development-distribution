@@ -18,8 +18,6 @@
     "require": {
         "neos/flow-development-collection": "dev-master",
         "typo3/welcome": "dev-master"
-    },
-    "require-dev": {
         "typo3/kickstart": "dev-master",
         "typo3/buildessentials": "dev-master",
         "phpunit/phpunit": "4.6.*",
