@@ -32,18 +32,16 @@ if [ -z "$3" ] ; then
 fi
 BUILD_URL=$3
 
+if [ ! -d "Distribution" ]; then echo '"Distribution" folder not found. Clone the base distribution into "Distribution"'; exit 1; fi
+
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh ${VERSION} ${BRANCH} "${BUILD_URL}" || exit 1
 
-tag_version ${VERSION} ${BRANCH} "${BUILD_URL}"
-push_branch ${BRANCH}
-push_tag ${VERSION}
+echo "Tagging distribution"
+tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Distribution"
+push_branch ${BRANCH} "Distribution"
+push_tag ${VERSION} "Distribution"
 
-tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Build/BuildEssentials"
-push_branch ${BRANCH} "Build/BuildEssentials"
-push_tag ${VERSION} "Build/BuildEssentials"
-
-for PACKAGE in `ls Packages/Framework` ; do
-	tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Packages/Framework/${PACKAGE}"
-	push_branch ${BRANCH} "Packages/Framework/${PACKAGE}"
-	push_tag ${VERSION} "Packages/Framework/${PACKAGE}"
-done
+echo "Tagging development collection"
+tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Packages/Framework"
+push_branch ${BRANCH} "Packages/Framework"
+push_tag ${VERSION} "Packages/Framework"
