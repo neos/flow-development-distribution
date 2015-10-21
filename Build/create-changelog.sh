@@ -1,79 +1,103 @@
 #!/bin/bash
-
+set -e
 #
 # Generates a changelog in reStructuredText from the commit history of
-# the base distribution and all packages in Packages/Framework
+# the packages in Packages/Flow:
+#
+# - TYPO3.Flow
+# - TYPO3.Fluid
+# - TYPO3.Eel
+# - TYPO3.Kickstart
 #
 # Needs the following environment variables
 #
-# WORKSPACE        the base directory of the distribution
 # VERSION          the version that is "to be released"
 # PREVIOUS_VERSION the last released version, is guessed if not given
-# BRANCH           the branch that is worked on, used in commit message
 # BUILD_URL        used in commit message
 #
 
-TARGET="${WORKSPACE}/Packages/Framework/TYPO3.Flow/Documentation/TheDefinitiveGuide/PartV/ChangeLogs/`echo ${VERSION} | tr -d .`.rst"
+if [ -z "$VERSION" ]; then echo "\$VERSION not set"; exit 1; fi
+if [ -z "$PREVIOUS_VERSION" ]; then echo "\$PREVIOUS_VERSION not set"; exit 1; fi
 
-cd "${WORKSPACE}"
-export TARGET
+cd Packages/Framework
 
-echo -e "====================\n${VERSION}\n====================\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nBase Distribution\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" > "${TARGET}"
-git log --pretty=format:"%s
------------------------------------------------------------------------------------------
+# Check for jq library
+hash jq 2>/dev/null || { echo >&2 "jq library is not installed. Aborting. Download at https://stedolan.github.io/jq/download/"; exit 1; }
 
-%b
+export TARGET="TYPO3.Flow/Documentation/TheDefinitiveGuide/PartV/ChangeLogs/$(echo ${VERSION} | tr -d .).rst"
 
-* Commit: \`%h <https://git.typo3.org/Flow/Distributions/Base.git/commit/%H>\`_
+# Add version and date header
+export DATE="$(date +%Y-%m-%d)"
+echo "\`${VERSION} (${DATE}) <https://github.com/neos/flow-development-collection/releases/tag/${VERSION}>\`_" > ${TARGET}
+perl -E 'say "=" x '$(echo $(($(tail -1 $TARGET | wc -c) - 1))) >> ${TARGET}
+echo -e "\nOverview of merged pull requests\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" >> ${TARGET}
 
-" --no-merges ${PREVIOUS_VERSION}.. >> "${TARGET}"
+# Loop over merge commits since previous version
+for mergeCommit in $(git log $PREVIOUS_VERSION.. --grep="Merge pull request" --oneline | cut -d ' ' -f1); do
+	pullRequest=$(git show $mergeCommit --oneline | cut -d ' ' -f5 | cut -c2-)
+	if [ -z "$GITHUB_TOKEN" ];
+	then
+		curl https://api.github.com/repos/neos/flow-development-collection/pulls/$pullRequest > pr
+	else
+		curl https://api.github.com/repos/neos/flow-development-collection/pulls/$pullRequest?access_token=$GITHUB_TOKEN > pr
+	fi
+	if [[ $(cat pr | jq '.message') != "null" ]]; then cat pr | jq -r '.message'; exit 1; fi
+	echo "\`"$(cat pr | jq -r '.title' | sed 's/`/\\`/g')" <"https://github.com/neos/flow-development-collection/pull/$pullRequest">\`_" >> $TARGET
+	perl -E 'say "-" x '$(echo $(($(tail -1 $TARGET | wc -c) - 1))) >> ${TARGET}
+	echo >> $TARGET
+	cat pr | jq -r '.body' >> $TARGET
+	echo >> $TARGET
+	packages=()
+	# Loop over changed files in merge commit
+	for changedFile in $(git show $mergeCommit^ $mergeCommit^2 --name-only --oneline | tail -n +2); do
+		# Get first part of changed filename
+		package=$(echo "$changedFile" | cut -d '/' -f1)
+		# Check if first part of filename is a directory
+		if [ -d "$package" ]; then
+			# Add last part of package key to packages array
+			packages=("${packages[@]}" $(echo $package | rev | cut -d '.' -f1 | rev))
+		fi
+	done
+	# Remove duplicates
+	packages=$(echo ${packages[@]} | tr ' ' '\n' | sort -u | tr '\n' ' ')
+	if [ -n "${packages// }" ]; then
+		echo "* Packages: \`\`"$(echo $packages | sed 's/ /`` ``/g')"\`\`" >> $TARGET
+	fi
+	echo >> $TARGET
+done
+# Remove pr file
+rm -f pr
 
-for PACKAGE in `ls Packages/Framework` ; do
-	cd "${WORKSPACE}/Packages/Framework/${PACKAGE}"
-	echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n${PACKAGE}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" >> "${TARGET}"
-	git log --pretty=format:"%s
------------------------------------------------------------------------------------------
-
-%b
-
-* Commit: \`%h <https://git.typo3.org/Packages/${PACKAGE}.git/commit/%H>\`_
-
-" --no-merges ${PREVIOUS_VERSION}.. >> "${TARGET}" || true
-done;
+echo -e "\n\n\`Detailed log <https://github.com/neos/flow-development-collection/compare/$PREVIOUS_VERSION...$VERSION>\`_" >> $TARGET
+perl -E 'say "~" x '$(echo $(($(tail -1 $TARGET | wc -c) - 1))) >> ${TARGET}
 
 # Drop some footer lines from commit messages
-perl -p -i -e 's|^Change-Id: (I[a-f0-9]+)$||g' "${TARGET}"
-perl -p -i -e 's|^Releases?:.*$||g' "${TARGET}"
-perl -p -i -e 's|^Migration?:.*$||g' "${TARGET}"
-perl -p -i -e 's|^Reviewed-by?:.*$||g' "${TARGET}"
-perl -p -i -e 's|^Reviewed-on?:.*$||g' "${TARGET}"
-perl -p -i -e 's|^Tested-by?:.*$||g' "${TARGET}"
-
-# Link issues to Forge
-perl -p -i -e 's/(Fixes|Resolves|Related|Relates|Extbase Issue): #([0-9]+)/* $1: `#$2 <http:\/\/forge.typo3.org\/issues\/$2>`_/g' "${TARGET}"
-perl -p -i -e 's/Security-Bulletin: (FLOW3-SA-[0-9]{4}-[0-9]+)/* Security-Bulletin: `$1 <http:\/\/typo3.org\/teams\/security\/security-bulletins\/flow3\/$1\/>`_/g' "${TARGET}"
-perl -p -i -e 's/Security-Bulletin: (FLOW-SA-[0-9]{4}-[0-9]+)/* Security-Bulletin: `$1 <http:\/\/typo3.org\/teams\/security\/security-bulletins\/flow\/$1\/>`_/g' "${TARGET}"
+perl -p -i -e 's|^Change-Id: (I[a-f0-9]+)$||g' ${TARGET}
+perl -p -i -e 's|^Releases?:.*$||g' ${TARGET}
+perl -p -i -e 's|^Migration?:.*$||g' ${TARGET}
+perl -p -i -e 's|^Reviewed-by?:.*$||g' ${TARGET}
+perl -p -i -e 's|^Reviewed-on?:.*$||g' ${TARGET}
+perl -p -i -e 's|^Tested-by?:.*$||g' ${TARGET}
 
 # Link issues to Jira
-perl -p -i -e 's/(Fixes|Resolves|Related|Relates): ([A-Z]+-\d+)/* $1: `$2 <https:\/\/jira.neos.io\/browse\/$2>`_/g' "${TARGET}"
+perl -p -i -e 's/(Fixes|Resolves|Related|Relates): (NEOS|FLOW)-([0-9]+)/* $1: `$2-$3 <https:\/\/jira.neos.io\/browse\/$2-$3>`_/g' ${TARGET}
+
+# Link to commits
+perl -p -i -e 's/([0-9a-f]{40})/`$1 <https:\/\/github.com\/neos\/flow-development-collection\/commit\/$1>`_/g' ${TARGET}
 
 # escape backslashes
-perl -p -i -e 's/\\/\\\\/g' "${TARGET}"
+perl -p -i -e 's/\\([^`])/\\\\$1/g' ${TARGET}
 # clean up empty lines
-perl -p -i -0 -e 's/\n\n+/\n\n/g' "${TARGET}"
+perl -p -i -0 -e 's/\n\n+/\n\n/g' ${TARGET}
 # join bullet list items
-perl -p -i -0 -e 's/(\* [^\n]+)\n+(\* [^\n]+)/$1\n$2/g' "${TARGET}"
-# amend empty sections (todo: get rid of duplication)
-perl -p -i -0 -e 's/(~{40}\n[a-z0-9.]+\n~{40}\n)(\n~{40})/$1\nNo changes\n$2/ig' "${TARGET}"
-perl -p -i -0 -e 's/(~{40}\n[a-z0-9.]+\n~{40}\n)(\n~{40})/$1\nNo changes\n$2/ig' "${TARGET}"
-perl -p -i -0 -e 's/(~{40}\n[a-z0-9.]+\n~{40}\n)(\n*)$/$1\nNo changes\n$2/ig' "${TARGET}"
-# remove automatic submodule pointer raises
-perl -p -i -0 -e 's/\[TASK\] Raise submodule pointers(?:[^[]+)//ig' "${TARGET}"
-# remove automatic lock file updates
-perl -p -i -0 -e 's/\[TASK\] Automatic composer.lock update(?:[^[]+)//ig' "${TARGET}"
+perl -p -i -0 -e 's/(\* [^\n]+)\n+(\* [^\n]+)/$1\n$2/g' ${TARGET}
 
 # commit generated changelog
-cd "${WORKSPACE}/Packages/Framework/TYPO3.Flow"
-git add Documentation/TheDefinitiveGuide/PartV/ChangeLogs/`basename "${TARGET}"`
-git commit -m "[TASK] Add changelog for TYPO3 Flow ${VERSION}" -m "See $BUILD_URL" -m "Releases: $BRANCH"
+git add ${TARGET}
+if [ -z "$BUILD_URL" ]
+then
+	git commit -m "[TASK] Add changelog for ${VERSION}" || echo " nothing to commit "
+else
+	git commit -m "[TASK] Add changelog for ${VERSION}" -m "See $BUILD_URL" || echo " nothing to commit "
+fi
 cd -

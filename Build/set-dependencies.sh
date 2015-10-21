@@ -23,12 +23,12 @@ if [ -z "$1" ] ; then
 	echo >&2 "No version specified (e.g. 2.1.*) as first parameter."
 	exit 1
 else
-	if [[ $1 =~ (dev)-.+ || $1 =~ .+@(dev) || $1 =~ (alpha|beta|RC)[0-9]+ ]] ; then
+	if [[ $1 =~ (dev)-.+ || $1 =~ .+(@dev|.x-dev) || $1 =~ (alpha|beta|RC|rc)[0-9]+ ]] ; then
 		VERSION=$1
 		STABILITY_FLAG=${BASH_REMATCH[1]}
 	else
 		if [[ $1 =~ ([0-9]+\.[0-9]+)\.[0-9] ]] ; then
-			VERSION=${BASH_REMATCH[1]}.*
+			VERSION=~${BASH_REMATCH[1]}.0
 		else
 			echo >&2 "Version $1 could not be parsed."
 			exit 1
@@ -48,25 +48,36 @@ if [ -z "$3" ] ; then
 fi
 BUILD_URL="$3"
 
+if [ ! -d "Distribution" ]; then echo '"Distribution" folder not found. Clone the base distribution into "Distribution"'; exit 1; fi
+
+echo "Setting distribution dependencies"
+
+# Require exact versions of the main packages
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "typo3/flow:${VERSION}"
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "typo3/welcome:${VERSION}"
+
+# Require exact versions of sub dependency packages, allowing unstable
 if [[ ${STABILITY_FLAG} ]] ; then
-	php "${COMPOSER_PHAR}" require --no-update "typo3/eel:@${STABILITY_FLAG}"
-	php "${COMPOSER_PHAR}" require --no-update "typo3/fluid:@${STABILITY_FLAG}"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "typo3/eel:${VERSION}"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "typo3/fluid:${VERSION}"
+# Remove dependencies not needed if releasing a stable version
 else
-	php $(dirname ${BASH_SOURCE[0]})/BuildEssentials/FilterStabilityFlags.php
+	# Remove requirements for development version of sub dependency packages
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "typo3/eel"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "typo3/fluid"
 fi
-php "${COMPOSER_PHAR}" require --no-update "typo3/flow:${VERSION}"
-php "${COMPOSER_PHAR}" require --no-update "typo3/welcome:${VERSION}"
-php "${COMPOSER_PHAR}" require --dev --no-update "typo3/kickstart:${VERSION}"
-php "${COMPOSER_PHAR}" require --dev --no-update "typo3/buildessentials:${VERSION}"
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION}
 
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/TYPO3.Flow require --no-update "typo3/eel:${VERSION}"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/TYPO3.Flow require --no-update "typo3/fluid:${VERSION}"
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework/TYPO3.Flow"
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "typo3/kickstart:${VERSION}"
 
-for PACKAGE in `ls Packages/Framework` ; do
-	if [ ${PACKAGE} != "TYPO3.Flow" ] ; then
-		php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "typo3/flow:${VERSION}"
-		commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework/${PACKAGE}"
-	fi
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Distribution"
+
+echo "Setting packages dependencies"
+
+php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/TYPO3.Flow require --no-update "typo3/eel:~${BRANCH}.0"
+php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/TYPO3.Flow require --no-update "typo3/fluid:~${BRANCH}.0"
+
+for PACKAGE in TYPO3.Eel TYPO3.Fluid TYPO3.Kickstart ; do
+	php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "typo3/flow:~${BRANCH}.0"
 done
+
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework"
