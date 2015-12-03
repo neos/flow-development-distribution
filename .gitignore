@@ -1,4 +1,5 @@
 /Build/Behat/*
+/Build/BuildEssentials
 /Build/Reports
 /Build/Resources
 /Configuration/
