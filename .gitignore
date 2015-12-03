@@ -1,0 +1,14 @@
+/Build/**
+!/Build/Surf**
+/Configuration/**
+!/Configuration/**.yaml
+/Data/
+/Web/
+/bin/
+/Readme.txt
+/Upgrading.txt
+/flow
+/flow.bat
+/Readme.rst
+/Upgrading.rst
+/Packages/**
