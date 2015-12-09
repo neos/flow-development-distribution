@@ -1,0 +1,15 @@
+/Build/Behat/*
+/Build/BuildEssentials
+/Build/Reports
+/Build/Resources
+/Configuration/
+/Data/
+/Packages/
+/Web/
+/bin/
+/Readme.txt
+/Upgrading.txt
+/Readme.rst
+/Upgrading.rst
+/flow
+/flow.bat
