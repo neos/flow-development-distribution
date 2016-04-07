@@ -21,7 +21,7 @@
         "doctrine/migrations": "1.0.0-alpha3",
         "typo3/kickstart": "2.3.x-dev",
         "typo3/buildessentials": "2.3.x-dev",
-        "phpunit/phpunit": "~4.8 | ~5.0",
+        "phpunit/phpunit": "~4.8 | ~5.2.0",
         "mikey179/vfsstream": "~1.6",
         "flowpack/behat": "dev-master"
     },
