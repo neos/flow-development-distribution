@@ -17,12 +17,14 @@
     },
     "require": {
         "neos/flow-development-collection": "dev-master",
-        "typo3/welcome": "dev-master",
-        "typo3/kickstart": "dev-master",
+        "typo3/welcome": "3.2.x-dev",
         "typo3/buildessentials": "dev-master",
         "phpunit/phpunit": "~4.8 | ~5.2.0",
         "mikey179/vfsstream": "~1.6",
-        "flowpack/behat": "dev-master"
+        "flowpack/behat": "dev-master",
+        "typo3/flow": "3.2.x-dev",
+        "typo3/eel": "3.2.x-dev",
+        "typo3/fluid": "3.2.x-dev"
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
@@ -32,5 +34,8 @@
         "post-install-cmd": "TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
         "post-package-install": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+    },
+    "require-dev": {
+        "typo3/kickstart": "3.2.x-dev"
     }
 }
