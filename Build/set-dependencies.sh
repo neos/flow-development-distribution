@@ -65,6 +65,16 @@ else
 	# Remove requirements for development version of sub dependency packages
 	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "typo3/eel"
 	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "typo3/fluid"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/error-messages"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-arrays"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-files"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-lock"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-mediatypes"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-objecthandling"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-opcodecache"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-pdo"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-schema"
+	php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-unicode"
 fi
 
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "typo3/kickstart:${VERSION}"
