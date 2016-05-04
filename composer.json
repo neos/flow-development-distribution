@@ -18,11 +18,11 @@
     "require": {
         "neos/flow-development-collection": "3.2.x-dev",
         "typo3/welcome": "3.2.x-dev",
+        "typo3/kickstart": "3.2.x-dev",
         "typo3/buildessentials": "3.2.x-dev",
         "phpunit/phpunit": "~4.8 | ~5.2.0",
         "mikey179/vfsstream": "~1.6",
-        "flowpack/behat": "dev-master",
-        "typo3/kickstart": "3.2.x-dev"
+        "flowpack/behat": "dev-master"
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
