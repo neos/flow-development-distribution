@@ -31,7 +31,7 @@ cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 # branch development collection
 cd Packages/Framework && git checkout -b ${BRANCH} origin/master ; cd -
 
-$(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}"
+$(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
 push_branch ${BRANCH} "Packages/Framework"
