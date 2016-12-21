@@ -9,6 +9,8 @@
 # BUILD_URL        used in commit message
 #
 
+set -e
+
 if [ -z "$BRANCH" ]; then echo "\$BRANCH not set"; exit 1; fi
 if [ -z "$BUILD_URL" ]; then echo "\$BUILD_URL not set"; exit 1; fi
 
@@ -21,7 +23,7 @@ composer.phar -v update
 source $(dirname ${BASH_SOURCE[0]})/BuildEssentials/ReleaseHelpers.sh
 
 rm -rf Distribution
-git clone -b ${BRANCH} git@github.com:neos/flow-base-distribution.git Distribution
+git clone git@github.com:neos/flow-base-distribution.git Distribution
 
 # branch distribution
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
