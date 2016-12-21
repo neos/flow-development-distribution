@@ -89,7 +89,7 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-u
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/eel:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 
-for PACKAGE in Neos.Cache Neos.Eel Neos.FluidAdaptor Neos.Kickstart ; do
+for PACKAGE in Neos.Cache Neos.Eel Neos.FluidAdaptor Neos.Kickstarter ; do
     php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "neos/flow:~${BRANCH}.0"
 done
 
