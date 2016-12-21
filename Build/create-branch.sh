@@ -32,10 +32,14 @@ cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 # branch development collection
 cd Packages/Framework&& git checkout -b ${BRANCH} origin/master ; cd -
 
+# branch welcome package
+cd Packages/Application/Neos.Welcome && git checkout -b ${BRANCH} origin/master ; cd -
+
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
 push_branch ${BRANCH} "Packages/Framework"
+push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 
 # same procedure again with the Development Distribution
 
