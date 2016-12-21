@@ -22,6 +22,7 @@ composer.phar -v update
 
 source $(dirname ${BASH_SOURCE[0]})/BuildEssentials/ReleaseHelpers.sh
 
+# start with Base Distribution
 rm -rf Distribution
 git clone git@github.com:neos/flow-base-distribution.git Distribution
 
@@ -35,3 +36,15 @@ $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${
 
 push_branch ${BRANCH} "Distribution"
 push_branch ${BRANCH} "Packages/Framework"
+
+# same procedure again with the Development Distribution
+
+rm -rf Distribution
+git clone git@github.com:neos/flow-development-distribution.git Distribution
+
+# branch distribution
+cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
+
+$(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
+
+push_branch ${BRANCH} "Distribution"
