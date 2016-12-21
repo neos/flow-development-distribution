@@ -17,11 +17,15 @@
     },
     "require": {
         "neos/flow-development-collection": "dev-master",
-        "neos/welcome": "dev-master",
+        "neos/welcome": "4.0.x-dev",
         "typo3/buildessentials": "dev-master",
         "phpunit/phpunit": "~4.8 | ~5.4.0",
         "mikey179/vfsstream": "~1.6",
-        "neos/behat": "dev-master"
+        "neos/behat": "dev-master",
+        "neos/flow": "4.0.x-dev",
+        "neos/cache": "4.0.x-dev",
+        "neos/eel": "4.0.x-dev",
+        "neos/fluid-adaptor": "4.0.x-dev"
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
@@ -31,5 +35,8 @@
         "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
         "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+    },
+    "require-dev": {
+        "neos/kickstarter": "4.0.x-dev"
     }
 }
