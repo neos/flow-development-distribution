@@ -16,7 +16,7 @@
         "bin-dir": "bin"
     },
     "require": {
-        "neos/flow-development-collection": "dev-master",
+        "neos/flow-development-collection": "4.0.x-dev",
         "neos/welcome": "4.0.x-dev",
         "typo3/buildessentials": "dev-master",
         "phpunit/phpunit": "~4.8 | ~5.4.0",
