@@ -19,7 +19,7 @@
         "neos/flow-development-collection": "4.0.x-dev",
         "neos/welcome": "4.0.x-dev",
         "typo3/buildessentials": "4.0.x-dev",
-        "phpunit/phpunit": "~4.8 | ~5.4.0",
+        "phpunit/phpunit": "~5.4.0",
         "mikey179/vfsstream": "~1.6",
         "neos/behat": "dev-master",
         "neos/flow": "4.0.x-dev",
