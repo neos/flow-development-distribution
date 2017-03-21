@@ -24,7 +24,7 @@ cd Packages/Framework
 # Check for jq library
 hash jq 2>/dev/null || { echo >&2 "jq library is not installed. Aborting. Download at https://stedolan.github.io/jq/download/"; exit 1; }
 
-export TARGET="TYPO3.Flow/Documentation/TheDefinitiveGuide/PartV/ChangeLogs/$(echo ${VERSION} | tr -d .).rst"
+export TARGET="Neos.Flow/Documentation/TheDefinitiveGuide/PartV/ChangeLogs/$(echo ${VERSION} | tr -d .).rst"
 
 # Add version and date header
 export DATE="$(date +%Y-%m-%d)"
@@ -33,7 +33,7 @@ perl -E 'say "=" x '$(echo $(($(tail -1 $TARGET | wc -c) - 1))) >> ${TARGET}
 echo -e "\nOverview of merged pull requests\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" >> ${TARGET}
 
 # Loop over merge commits since previous version
-for mergeCommit in $(git log $PREVIOUS_VERSION.. --grep="Merge pull request" --oneline | cut -d ' ' -f1); do
+for mergeCommit in $(git log $PREVIOUS_VERSION.. --grep="^Merge pull request" --oneline | cut -d ' ' -f1); do
 	pullRequest=$(git show $mergeCommit --no-patch --oneline | cut -d ' ' -f5 | cut -c2-)
 	if [ -z "$GITHUB_TOKEN" ];
 	then
