@@ -50,9 +50,11 @@ push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 rm -rf Distribution
 git clone git@github.com:neos/flow-development-distribution.git Distribution
 
-# branch distribution
+# branch
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
+# special case for the Development Distribution
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow-development-collection:${VERSION}"
 
 push_branch ${BRANCH} "Distribution"
