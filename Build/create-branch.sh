@@ -29,6 +29,9 @@ git clone git@github.com:neos/flow-base-distribution.git Distribution
 # branch distribution
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
+# branch BuildEssentials
+cd Build/BuildEssentials && git checkout -b ${BRANCH} origin/master ; cd -
+
 # branch development collection
 cd Packages/Framework&& git checkout -b ${BRANCH} origin/master ; cd -
 
@@ -38,6 +41,7 @@ cd Packages/Application/Neos.Welcome && git checkout -b ${BRANCH} origin/master 
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
+push_branch ${BRANCH} "Build/BuildEssentials"
 push_branch ${BRANCH} "Packages/Framework"
 push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 
