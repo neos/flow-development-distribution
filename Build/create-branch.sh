@@ -55,6 +55,6 @@ cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 # special case for the Development Distribution
-php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow-development-collection:${VERSION}"
+composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${VERSION}"
 
 push_branch ${BRANCH} "Distribution"
