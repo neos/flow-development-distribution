@@ -90,6 +90,7 @@ else
 fi
 
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${VERSION}"
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/buildessentials:${VERSION}"
 
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Distribution"
 
