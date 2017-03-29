@@ -5,15 +5,9 @@
 
 BRANCH=$(echo ${payload} | jq --raw-output '.ref | match("refs/heads/(.+)") | .captures | .[0].string')
 
-# clone distribution
-if [ -d flow-${BRANCH} ] ; then
-	cd flow-${BRANCH}
-	git fetch origin
-	git reset --hard origin/${BRANCH}
-else
-	git clone -b ${BRANCH} git@github.com:neos/flow-development-distribution.git flow-${BRANCH}
-	cd flow-${BRANCH}
-fi
+# reset distribution
+git reset --hard
+git checkout -B ${BRANCH} origin/${BRANCH}
 
 # install dependencies
 php ../composer.phar update --no-interaction --no-progress --no-suggest
@@ -34,5 +28,5 @@ done
 echo 'Commit and push to Framework'
 git commit -am 'TASK: Update references'
 git config push.default simple
-git push origin
+git push origin ${BRANCH}
 cd -
