@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -xe
 
 # This is intended to be run on Jenkins, triggered by GitHub and will
 # update the references rendered from PHP sources.
@@ -10,8 +10,8 @@ git reset --hard
 git checkout -B ${BRANCH} origin/${BRANCH}
 
 # install dependencies
-php ../composer.phar update --no-interaction --no-progress --no-suggest
-php ../composer.phar require --no-interaction --no-progress neos/doctools
+php $(dirname ${BASH_SOURCE[0]})/../composer.phar update --no-interaction --no-progress --no-suggest
+php $(dirname ${BASH_SOURCE[0]})/../composer.phar require --no-interaction --no-progress neos/doctools
 
 # render references
 ./flow cache:warmup
