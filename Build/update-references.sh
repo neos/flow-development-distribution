@@ -1,4 +1,4 @@
-#!/bin/sh -xe
+#!/bin/bash
 
 # This is intended to be run on Jenkins, triggered by GitHub and will
 # update the references rendered from PHP sources.
