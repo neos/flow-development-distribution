@@ -29,6 +29,9 @@ git clone git@github.com:neos/flow-base-distribution.git Distribution
 # branch distribution
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
+# branch BuildEssentials
+cd Build/BuildEssentials && git checkout -b ${BRANCH} origin/master ; cd -
+
 # branch development collection
 cd Packages/Framework&& git checkout -b ${BRANCH} origin/master ; cd -
 
@@ -38,6 +41,7 @@ cd Packages/Application/Neos.Welcome && git checkout -b ${BRANCH} origin/master 
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
+push_branch ${BRANCH} "Build/BuildEssentials"
 push_branch ${BRANCH} "Packages/Framework"
 push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 
@@ -46,9 +50,11 @@ push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 rm -rf Distribution
 git clone git@github.com:neos/flow-development-distribution.git Distribution
 
-# branch distribution
+# branch
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
+# special case for the Development Distribution
+composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${VERSION}"
 
 push_branch ${BRANCH} "Distribution"
