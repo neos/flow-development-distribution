@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 #
 # Updates the dependencies in composer.json files of the dist and its

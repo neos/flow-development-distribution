@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 #
 # Create a new branch for the distribution and the development collection
@@ -53,8 +53,8 @@ git clone git@github.com:neos/flow-development-distribution.git Distribution
 # branch
 cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 
-$(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 # special case for the Development Distribution
-composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${VERSION}"
+composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${BRANCH}.x-dev"
+$(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
