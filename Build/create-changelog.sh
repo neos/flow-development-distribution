@@ -2,18 +2,14 @@
 set -e
 #
 # Generates a changelog in reStructuredText from the commit history of
-# the packages in Packages/Flow:
-#
-# - TYPO3.Flow
-# - TYPO3.Fluid
-# - TYPO3.Eel
-# - TYPO3.Kickstart
+# the packages in Packages/Framework.
 #
 # Needs the following environment variables
 #
-# VERSION          the version that is "to be released"
-# PREVIOUS_VERSION the last released version, is guessed if not given
+# VERSION          the version that is "to be released", e.g "4.1.0"
+# PREVIOUS_VERSION the last released version, e.g. "4.0.0"
 # BUILD_URL        used in commit message
+# GITHUB_TOKEN     to authenticate github calls and avoid API limits
 #
 
 if [ -z "$VERSION" ]; then echo "\$VERSION not set"; exit 1; fi
