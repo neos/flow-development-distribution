@@ -7,7 +7,7 @@ set -e
 # Needs the following environment variables
 #
 # VERSION          the version that is "to be released", e.g "4.1.0"
-# PREVIOUS_VERSION the last released version, e.g. "origin/4.0"
+# PREVIOUS_VERSION the last released version, e.g. "4.0.0"
 # BUILD_URL        used in commit message
 # GITHUB_TOKEN     to authenticate github calls and avoid API limits
 #
