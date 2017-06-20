@@ -8,6 +8,7 @@ BRANCH=$(echo ${payload} | jq --raw-output '.ref | match("refs/heads/(.+)") | .c
 # reset distribution
 git reset --hard
 git checkout -B ${BRANCH} origin/${BRANCH}
+git reset --hard origin/${BRANCH}
 
 # install dependencies
 php $(dirname ${BASH_SOURCE[0]})/../composer.phar update --no-interaction --no-progress --no-suggest
@@ -26,7 +27,8 @@ done
 
 # commit and push results to Framework dev collection
 echo 'Commit and push to Framework'
-git commit -am 'TASK: Update references'
+git add Neos.Flow/Documentation/TheDefinitiveGuide/PartV
+git commit -m 'TASK: Update references'
 git config push.default simple
 git push origin ${BRANCH}
 cd -
