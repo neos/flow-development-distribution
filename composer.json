@@ -20,7 +20,7 @@
         "neos/welcome": "4.2.x-dev",
         "phpunit/phpunit": "~6.0.0",
         "mikey179/vfsstream": "~1.6",
-        "neos/behat": "dev-master",
+        "neos/behat": "4.1.x-dev",
         "neos/fluid-adaptor": "4.2.x-dev",
         "neos/flow": "4.2.x-dev",
         "neos/cache": "4.2.x-dev",
