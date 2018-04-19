@@ -21,7 +21,7 @@
         "typo3/buildessentials": "4.0.x-dev",
         "phpunit/phpunit": "~5.4.0",
         "mikey179/vfsstream": "~1.6",
-        "neos/behat": "dev-master",
+        "neos/behat": "4.0.x-dev",
         "neos/flow": "4.0.x-dev",
         "neos/cache": "4.0.x-dev",
         "neos/eel": "4.0.x-dev",
