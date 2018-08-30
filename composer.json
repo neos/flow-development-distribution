@@ -26,6 +26,7 @@
         "neos/cache": "4.3.x-dev",
         "neos/eel": "4.3.x-dev",
         "neos/error-messages": "4.3.x-dev",
+        "neos/flow-log": "4.3.x-dev",
         "neos/utility-arrays": "4.3.x-dev",
         "neos/utility-files": "4.3.x-dev",
         "neos/utility-lock": "4.3.x-dev",
