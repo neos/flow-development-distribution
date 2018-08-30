@@ -26,6 +26,7 @@
         "neos/cache": "5.1.x-dev",
         "neos/eel": "5.1.x-dev",
         "neos/error-messages": "5.1.x-dev",
+        "neos/flow-log": "5.1.x-dev",
         "neos/utility-arrays": "5.1.x-dev",
         "neos/utility-files": "5.1.x-dev",
         "neos/utility-lock": "5.1.x-dev",
