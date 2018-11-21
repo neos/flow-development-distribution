@@ -22,7 +22,7 @@ if [ ! -e "composer.phar" ]; then
     ln -s /usr/local/bin/composer.phar composer.phar
 fi
 
-./composer.phar -v update
+php ./composer.phar -v update
 
 source $(dirname ${BASH_SOURCE[0]})/BuildEssentials/ReleaseHelpers.sh
 
@@ -67,7 +67,7 @@ cd Distribution && git checkout -b ${BRANCH} origin/master ; cd -
 push_branch ${BRANCH} "Distribution"
 
 # special case for the Development Distribution
-./composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${BRANCH}.x-dev"
+php ./composer.phar --working-dir=Distribution require --no-update "neos/flow-development-collection:${BRANCH}.x-dev"
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
