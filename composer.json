@@ -16,12 +16,26 @@
         "bin-dir": "bin"
     },
     "require": {
-        "neos/flow-development-collection": "dev-master",
-        "neos/welcome": "dev-master",
+        "neos/flow-development-collection": "5.3.x-dev",
+        "neos/welcome": "5.3.x-dev",
         "phpunit/phpunit": "~7.1",
         "mikey179/vfsstream": "~1.6",
         "neos/behat": "dev-master",
-        "neos/fluid-adaptor": "dev-master"
+        "neos/fluid-adaptor": "5.3.x-dev",
+        "neos/flow": "5.3.x-dev",
+        "neos/cache": "5.3.x-dev",
+        "neos/eel": "5.3.x-dev",
+        "neos/error-messages": "5.3.x-dev",
+        "neos/flow-log": "5.3.x-dev",
+        "neos/utility-arrays": "5.3.x-dev",
+        "neos/utility-files": "5.3.x-dev",
+        "neos/utility-lock": "5.3.x-dev",
+        "neos/utility-mediatypes": "5.3.x-dev",
+        "neos/utility-objecthandling": "5.3.x-dev",
+        "neos/utility-opcodecache": "5.3.x-dev",
+        "neos/utility-pdo": "5.3.x-dev",
+        "neos/utility-schema": "5.3.x-dev",
+        "neos/utility-unicode": "5.3.x-dev"
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
@@ -33,7 +47,7 @@
         "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
     },
     "require-dev": {
-        "neos/kickstarter": "dev-master",
-        "neos/buildessentials": "dev-master"
+        "neos/kickstarter": "5.3.x-dev",
+        "neos/buildessentials": "5.3.x-dev"
     }
 }
