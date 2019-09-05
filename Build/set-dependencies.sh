@@ -90,6 +90,7 @@ else
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-pdo"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-schema"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-unicode"
+    php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/http-factories"
 fi
 
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${VERSION}"
