@@ -17,6 +17,7 @@ php $(dirname ${BASH_SOURCE[0]})/../composer.phar require --no-interaction --no-
 # render references
 ./flow cache:warmup
 ./flow reference:rendercollection Flow
+./flow commandreference:rendercollection Flow
 
 cd Packages/Framework
 
