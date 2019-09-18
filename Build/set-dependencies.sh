@@ -65,13 +65,13 @@ if [[ ${STABILITY_FLAG} ]] ; then
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/fluid-adaptor:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-arrays:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-files:${VERSION}"
-    php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-lock:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-mediatypes:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-objecthandling:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-opcodecache:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-pdo:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-schema:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-unicode:${VERSION}"
+    php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/http-factories:${VERSION}"
 # Remove dependencies not needed if releasing a stable version
 else
     # Remove requirements for development version of sub dependency packages
@@ -82,13 +82,13 @@ else
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/fluid-adaptor"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-arrays"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-files"
-    php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-lock"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-mediatypes"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-objecthandling"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-opcodecache"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-pdo"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-schema"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-unicode"
+    php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/http-factories"
 fi
 
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${VERSION}"
@@ -105,13 +105,13 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-u
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-arrays:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-files:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-lock:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-mediatypes:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-objecthandling:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-opcodecache:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-pdo:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-schema:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-unicode:~${BRANCH}.0"
+php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/http-factories:~${BRANCH}.0"
 
 for PACKAGE in Neos.Eel Neos.FluidAdaptor Neos.Kickstarter ; do
     php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "neos/flow:~${BRANCH}.0"
