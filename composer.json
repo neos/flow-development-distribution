@@ -35,6 +35,6 @@
     "require-dev": {
         "neos/kickstarter": "dev-master",
         "neos/buildessentials": "dev-master",
-        "vimeo/psalm": "^3.4"
+        "vimeo/psalm": "~3.10.0"
     }
 }
