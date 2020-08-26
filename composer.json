@@ -16,12 +16,32 @@
         "bin-dir": "bin"
     },
     "require": {
-        "neos/flow-development-collection": "dev-master",
-        "neos/welcome": "dev-master",
+        "neos/flow-development-collection": "6.3.x-dev",
+        "neos/welcome": "6.3.x-dev",
         "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "~1.6",
         "neos/behat": "dev-master",
-        "neos/fluid-adaptor": "dev-master"
+        "neos/fluid-adaptor": "6.3.x-dev",
+        "neos/flow": "6.3.x-dev",
+        "neos/cache": "6.3.x-dev",
+        "neos/eel": "6.3.x-dev",
+        "neos/error-messages": "6.3.x-dev",
+        "neos/flow-log": "6.3.x-dev",
+        "neos/utility-arrays": "6.3.x-dev",
+        "neos/utility-files": "6.3.x-dev",
+        "neos/utility-mediatypes": "6.3.x-dev",
+        "neos/utility-objecthandling": "6.3.x-dev",
+        "neos/utility-opcodecache": "6.3.x-dev",
+        "neos/utility-pdo": "6.3.x-dev",
+        "neos/utility-schema": "6.3.x-dev",
+        "neos/utility-unicode": "6.3.x-dev",
+        "neos/http-factories": "6.3.x-dev"
+    },
+    "repositories": {
+        "distributionPackages": {
+            "type": "path",
+            "url": "./DistributionPackages/*"
+        }
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
@@ -37,7 +57,7 @@
         "psalm-baseline-update": "psalm --config=Packages/Framework/psalm.xml --set-baseline=Packages/Framework/psalm-baseline.xml"
     },
     "require-dev": {
-        "neos/kickstarter": "dev-master",
-        "neos/buildessentials": "dev-master"
+        "neos/kickstarter": "6.3.x-dev",
+        "neos/buildessentials": "6.3.x-dev"
     }
 }
