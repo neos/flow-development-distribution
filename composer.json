@@ -36,6 +36,12 @@
         "neos/utility-schema": "6.0.x-dev",
         "neos/utility-unicode": "6.0.x-dev"
     },
+    "repositories": {
+        "distributionPackages": {
+            "type": "path",
+            "url": "./DistributionPackages/*"
+        }
+    },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
     },
