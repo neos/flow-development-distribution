@@ -79,8 +79,14 @@ perl -p -i -e 's|^Tested-by?:.*$||g' ${TARGET}
 # Link issues to Jira
 perl -p -i -e 's/(Fixes|Resolves|Related|Relates): (NEOS|FLOW)-([0-9]+)/* $1: `$2-$3 <https:\/\/jira.neos.io\/browse\/$2-$3>`_/g' ${TARGET}
 
+# Link issues to GitHub
+perl -p -i -e 's/(Fixes|Solves|Resolves|Related|Relates|See):? #([0-9]+)/* $1: `#$2 <https:\/\/github.com\/neos\/flow-development-collection\/issues\/$2>`_/g' ${TARGET}
+
 # Link to commits
 perl -p -i -e 's/([0-9a-f]{40})/`$1 <https:\/\/github.com\/neos\/flow-development-collection\/commit\/$1>`_/g' ${TARGET}
+
+# Convert Markdown links
+perl -p -i -e 's/\[([^]]+)\]\(([^)]+)\)/`$1 <$2>`_/g' ${TARGET}
 
 # escape backslashes
 perl -p -i -e 's/\\([^`])/\\\\$1/g' ${TARGET}
