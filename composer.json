@@ -37,6 +37,12 @@
         "neos/utility-unicode": "6.2.x-dev",
         "neos/http-factories": "6.2.x-dev"
     },
+    "repositories": {
+        "distributionPackages": {
+            "type": "path",
+            "url": "./DistributionPackages/*"
+        }
+    },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
     },
