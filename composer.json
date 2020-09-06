@@ -21,7 +21,7 @@
         "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "~1.6",
         "neos/behat": "dev-master",
-        "neos/fluid-adaptor": "dev-master",
+        "neos/fluid-adaptor": "dev-master"
     },
     "repositories": {
         "distributionPackages": {
