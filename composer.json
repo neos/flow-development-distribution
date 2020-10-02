@@ -30,7 +30,7 @@
     },
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required",
-        "neos/fluid-adaptor": "For rendering HTML templates"
+        "neos/fluid-adaptor": "For rendering templates with TYPO3.Fluid"
     },
     "scripts": {
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
