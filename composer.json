@@ -20,8 +20,7 @@
         "neos/welcome": "dev-master",
         "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "~1.6",
-        "neos/behat": "dev-master",
-        "neos/fluid-adaptor": "dev-master"
+        "neos/behat": "dev-master"
     },
     "repositories": {
         "distributionPackages": {
@@ -30,7 +29,8 @@
         }
     },
     "suggest": {
-        "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
+        "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required",
+        "neos/fluid-adaptor": "For rendering HTML templates"
     },
     "scripts": {
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
