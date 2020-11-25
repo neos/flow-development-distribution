@@ -20,6 +20,7 @@
         "neos/welcome": "dev-master",
         "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "~1.6",
+        "vimeo/psalm": "~4.1.1",
         "neos/behat": "dev-master",
         "neos/fluid-adaptor": "dev-master"
     },
