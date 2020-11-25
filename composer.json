@@ -20,6 +20,7 @@
         "neos/welcome": "6.2.x-dev",
         "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "~1.6",
+        "vimeo/psalm": "~4.1.1",
         "neos/behat": "dev-master",
         "neos/fluid-adaptor": "6.2.x-dev",
         "neos/flow": "6.2.x-dev",
@@ -50,7 +51,11 @@
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
-        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "test-unit": "phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml",
+        "test-functional": "phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml",
+        "test-static": "psalm --config=Packages/Framework/psalm.xml --show-info=false",
+        "psalm-baseline-update": "psalm --config=Packages/Framework/psalm.xml --set-baseline=Packages/Framework/psalm-baseline.xml"
     },
     "require-dev": {
         "neos/kickstarter": "6.2.x-dev",
