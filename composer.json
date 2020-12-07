@@ -16,10 +16,11 @@
         "bin-dir": "bin"
     },
     "require": {
-        "neos/flow-development-collection": "dev-master",
-        "neos/welcome": "dev-master",
-        "phpunit/phpunit": "~8.1",
+        "neos/flow-development-collection": "7.0.x-dev",
+        "neos/welcome": "7.0.x-dev",
+        "phpunit/phpunit": "~9.0",
         "mikey179/vfsstream": "~1.6",
+        "vimeo/psalm": "~4.1.1",
         "neos/behat": "dev-master"
     },
     "repositories": {
@@ -42,7 +43,7 @@
         "psalm-baseline-update": "psalm --config=Packages/Framework/psalm.xml --set-baseline=Packages/Framework/psalm-baseline.xml"
     },
     "require-dev": {
-        "neos/kickstarter": "dev-master",
-        "neos/buildessentials": "dev-master"
+        "neos/kickstarter": "7.0.x-dev",
+        "neos/buildessentials": "7.0.x-dev"
     }
 }

@@ -13,6 +13,7 @@ git reset --hard origin/${BRANCH}
 # install dependencies
 php $(dirname ${BASH_SOURCE[0]})/../composer.phar update --no-interaction --no-progress --no-suggest
 php $(dirname ${BASH_SOURCE[0]})/../composer.phar require --no-interaction --no-progress neos/doctools
+php $(dirname ${BASH_SOURCE[0]})/../composer.phar require --no-interaction --no-progress neos/fluid-adaptor
 
 # render references
 ./flow cache:warmup
@@ -29,7 +30,7 @@ done
 # commit and push results to Framework dev collection
 echo 'Commit and push to Framework'
 git add Neos.Flow/Documentation/TheDefinitiveGuide/PartV
-git commit -m 'TASK: Update references'
+git commit -m 'TASK: Update references [skip travis]'
 git config push.default simple
 git push origin ${BRANCH}
 cd -
