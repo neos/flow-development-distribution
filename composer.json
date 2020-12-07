@@ -21,7 +21,21 @@
         "phpunit/phpunit": "~9.0",
         "mikey179/vfsstream": "~1.6",
         "vimeo/psalm": "~4.1.1",
-        "neos/behat": "dev-master"
+        "neos/behat": "dev-master",
+        "neos/flow": "7.0.x-dev",
+        "neos/cache": "7.0.x-dev",
+        "neos/eel": "7.0.x-dev",
+        "neos/error-messages": "7.0.x-dev",
+        "neos/flow-log": "7.0.x-dev",
+        "neos/utility-arrays": "7.0.x-dev",
+        "neos/utility-files": "7.0.x-dev",
+        "neos/utility-mediatypes": "7.0.x-dev",
+        "neos/utility-objecthandling": "7.0.x-dev",
+        "neos/utility-opcodecache": "7.0.x-dev",
+        "neos/utility-pdo": "7.0.x-dev",
+        "neos/utility-schema": "7.0.x-dev",
+        "neos/utility-unicode": "7.0.x-dev",
+        "neos/http-factories": "7.0.x-dev"
     },
     "repositories": {
         "distributionPackages": {
