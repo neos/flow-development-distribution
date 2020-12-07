@@ -62,7 +62,6 @@ if [[ ${STABILITY_FLAG} ]] ; then
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/eel:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/error-messages:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow-log:${VERSION}"
-    php "${COMPOSER_PHAR}" --working-dir=Distribution config "suggest.neos/fluid-adaptor" "For rendering templates with TYPO3.Fluid" # fluid-adaptor no longer included 
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-arrays:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-files:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-mediatypes:${VERSION}"
@@ -102,7 +101,6 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-u
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/eel:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/error-messages:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/flow-log:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow config "suggest.neos/fluid-adaptor" "For rendering templates with TYPO3.Fluid" # fluid-adaptor no longer included 
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-arrays:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-files:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-mediatypes:~${BRANCH}.0"
