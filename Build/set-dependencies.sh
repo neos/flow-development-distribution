@@ -62,7 +62,6 @@ if [[ ${STABILITY_FLAG} ]] ; then
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/eel:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/error-messages:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow-log:${VERSION}"
-    php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/fluid-adaptor:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-arrays:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-files:${VERSION}"
     php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-mediatypes:${VERSION}"
@@ -79,7 +78,6 @@ else
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/eel"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/error-messages"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/flow-log"
-    php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/fluid-adaptor"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-arrays"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-files"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-mediatypes"
@@ -102,7 +100,6 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-u
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/eel:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/error-messages:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/flow-log:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-arrays:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-files:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-mediatypes:~${BRANCH}.0"
@@ -116,5 +113,7 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-u
 for PACKAGE in Neos.Eel Neos.FluidAdaptor Neos.Kickstarter ; do
     php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "neos/flow:~${BRANCH}.0"
 done
+
+php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Kickstarter require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework"
