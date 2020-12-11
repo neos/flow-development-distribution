@@ -78,6 +78,7 @@ else
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/eel"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/error-messages"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/flow-log"
+    php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/fluid-adaptor"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-arrays"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-files"
     php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-mediatypes"
