@@ -19,7 +19,7 @@
         "neos/flow-development-collection": "5.3.x-dev",
         "neos/welcome": "5.3.x-dev",
         "phpunit/phpunit": "~7.1",
-        "mikey179/vfsstream": "~1.6",
+        "mikey179/vfsstream": "^1.6.1",
         "neos/behat": "6.0.x-dev",
         "neos/fluid-adaptor": "5.3.x-dev",
         "neos/flow": "5.3.x-dev",
