@@ -50,7 +50,9 @@
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
-        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "test-unit": "phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml",
+        "test-functional": "phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml"
     },
     "require-dev": {
         "neos/kickstarter": "5.3.x-dev",
