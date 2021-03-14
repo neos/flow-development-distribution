@@ -42,12 +42,19 @@ push_branch ${BRANCH} "Packages/Framework"
 cd Packages/Application/Neos.Welcome && git checkout -b ${BRANCH} origin/master ; cd -
 push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
 
+# branch behat package
+cd Packages/Application/Neos.Behat && git checkout -b ${BRANCH} origin/master ; cd -
+# special procedure for updating the composer.lock of Behat setup - see https://github.com/neos/behat/issues/23
+cd Packages/Application/Neos.Behat/Resources/Private/Build/Behat && composer update --no-install && git add composer.lock && git commit -m "TASK: Update composer.lock" ; cd -
+push_branch ${BRANCH} "Packages/Application/Neos.Behat"
+
 $(dirname ${BASH_SOURCE[0]})/set-dependencies.sh "${BRANCH}.x-dev" ${BRANCH} "${BUILD_URL}" || exit 1
 
 push_branch ${BRANCH} "Distribution"
 push_branch ${BRANCH} "Build/BuildEssentials"
 push_branch ${BRANCH} "Packages/Framework"
 push_branch ${BRANCH} "Packages/Application/Neos.Welcome"
+push_branch ${BRANCH} "Packages/Application/Neos.Behat"
 
 # same procedure again with the Development Distribution
 
