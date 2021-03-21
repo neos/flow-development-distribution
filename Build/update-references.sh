@@ -30,7 +30,7 @@ done
 # commit and push results to Framework dev collection
 echo 'Commit and push to Framework'
 git add Neos.Flow/Documentation/TheDefinitiveGuide/PartV
-git commit -m 'TASK: Update references [skip travis]'
+git commit -m 'TASK: Update references [skip ci]'
 git config push.default simple
 git push origin ${BRANCH}
 cd -
