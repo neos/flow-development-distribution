@@ -120,4 +120,5 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require -
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Behat require --no-update "neos/flow:~${BRANCH}.0"
 
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework"
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application"
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Behat"
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Welcome"
