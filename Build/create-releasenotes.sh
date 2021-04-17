@@ -14,6 +14,6 @@ set -e
 
 if [ -z "$VERSION" ]; then echo "\$VERSION not set"; exit 1; fi
 if [ -z "$PREVIOUS_VERSION" ]; then echo "\$PREVIOUS_VERSION not set"; exit 1; fi
-export TARGET="Neos.Flow/Documentation/TheDefinitiveGuide/PartV/ChangeLogs/$(echo ${VERSION} | tr -d .).rst"
+export TARGET="Neos.Flow/Documentation/TheDefinitiveGuide/PartV/ReleaseNotes/$(echo ${VERSION} | tr -d .).rst"
 
-php ./BuildEssentials/build-tools.php flow $PREVIOUS_VERSION $VERSION $TARGET --githubToken=$GITHUB_TOKEN --buildUrl=$BUILD_URL
+php ./BuildEssentials/build-tools.php flow $PREVIOUS_VERSION $VERSION $TARGET --filter=FEATURE --githubToken=$GITHUB_TOKEN --buildUrl=$BUILD_URL
