@@ -18,7 +18,7 @@ if [ ! -e "composer.phar" ]; then
     ln -s /usr/local/bin/composer.phar composer.phar
 fi
 
-php ./composer.phar -v self-update --2
+sudo php ./composer.phar -v self-update --2
 php ./composer.phar -v update
 
 source $(dirname ${BASH_SOURCE[0]})/BuildEssentials/ReleaseHelpers.sh
