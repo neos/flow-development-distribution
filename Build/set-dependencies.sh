@@ -117,6 +117,7 @@ done
 
 php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Kickstarter require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require --no-update "neos/flow:~${BRANCH}.0"
+php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Behat require --no-update "neos/flow:~${BRANCH}.0"
 
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework"
