@@ -45,3 +45,18 @@ echo "Tagging development collection"
 tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Packages/Framework"
 push_branch ${BRANCH} "Packages/Framework"
 push_tag ${VERSION} "Packages/Framework"
+
+if [[ "$VERSION" == *.0 ]]
+then
+  echo "Tagging buildessentials"
+  tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Build/BuildEssentials"
+  push_tag ${VERSION} "Build/BuildEssentials"
+
+  echo "Tagging behat"
+  tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Packages/Application/Neos.Behat"
+  push_tag ${VERSION} "Packages/Application/Neos.Behat"
+
+  echo "Tagging welcome"
+  tag_version ${VERSION} ${BRANCH} "${BUILD_URL}" "Packages/Application/Neos.Welcome"
+  push_tag ${VERSION} "Packages/Application/Neos.Welcome"
+fi
