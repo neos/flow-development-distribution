@@ -20,7 +20,7 @@
         "neos/welcome": "7.1.x-dev",
         "phpunit/phpunit": "~9.1",
         "mikey179/vfsstream": "^1.6.1",
-        "vimeo/psalm": "~4.1.1",
+        "vimeo/psalm": "~4.9.3",
         "neos/behat": "7.1.x-dev",
         "neos/flow": "7.1.x-dev",
         "neos/cache": "7.1.x-dev",
