@@ -19,12 +19,26 @@
         }
     },
     "require": {
-        "neos/flow-development-collection": "dev-master",
-        "neos/welcome": "dev-master",
+        "neos/flow-development-collection": "7.3.x-dev",
+        "neos/welcome": "7.3.x-dev",
         "phpunit/phpunit": "~9.1",
         "mikey179/vfsstream": "^1.6.1",
         "vimeo/psalm": "~4.9.3",
-        "neos/behat": "dev-master"
+        "neos/behat": "7.3.x-dev",
+        "neos/flow": "7.3.x-dev",
+        "neos/cache": "7.3.x-dev",
+        "neos/eel": "7.3.x-dev",
+        "neos/error-messages": "7.3.x-dev",
+        "neos/flow-log": "7.3.x-dev",
+        "neos/utility-arrays": "7.3.x-dev",
+        "neos/utility-files": "7.3.x-dev",
+        "neos/utility-mediatypes": "7.3.x-dev",
+        "neos/utility-objecthandling": "7.3.x-dev",
+        "neos/utility-opcodecache": "7.3.x-dev",
+        "neos/utility-pdo": "7.3.x-dev",
+        "neos/utility-schema": "7.3.x-dev",
+        "neos/utility-unicode": "7.3.x-dev",
+        "neos/http-factories": "7.3.x-dev"
     },
     "repositories": {
         "distributionPackages": {
@@ -46,7 +60,7 @@
         "psalm-baseline-update": "psalm --config=Packages/Framework/psalm.xml --set-baseline=Packages/Framework/psalm-baseline.xml"
     },
     "require-dev": {
-        "neos/kickstarter": "dev-master",
-        "neos/buildessentials": "dev-master"
+        "neos/kickstarter": "7.3.x-dev",
+        "neos/buildessentials": "7.3.x-dev"
     }
 }
