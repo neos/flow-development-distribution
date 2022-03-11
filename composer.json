@@ -13,14 +13,17 @@
     },
     "config": {
         "vendor-dir": "Packages/Libraries",
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "allow-plugins": {
+            "neos/composer-plugin": true
+        }
     },
     "require": {
         "neos/flow-development-collection": "6.3.x-dev",
         "neos/welcome": "6.3.x-dev",
         "phpunit/phpunit": "~8.5",
         "mikey179/vfsstream": "^1.6.1",
-        "vimeo/psalm": "~4.9.3",
+        "vimeo/psalm": "~4.22.0",
         "neos/behat": "6.1.x-dev",
         "neos/fluid-adaptor": "6.3.x-dev",
         "neos/flow": "6.3.x-dev",
