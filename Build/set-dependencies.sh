@@ -58,7 +58,7 @@ echo "Setting distribution dependencies"
 # Require exact versions of the main packages
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow:${VERSION}"
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/welcome:${VERSION}"
-php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/behat:${VERSION}"
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/behat:${VERSION}"
 
 # Require exact versions of sub dependency packages, allowing unstable
 if [[ ${STABILITY_FLAG} ]]; then
