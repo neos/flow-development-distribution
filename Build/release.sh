@@ -11,24 +11,36 @@
 # BUILD_URL        used in commit message
 #
 
-if [ -z "$VERSION" ]; then echo "\$VERSION not set"; exit 1; fi
-if [ -z "$PREVIOUS_VERSION" ]; then echo "\$PREVIOUS_VERSION not set"; exit 1; fi
-if [ -z "$BRANCH" ]; then echo "\$BRANCH not set"; exit 1; fi
-if [ -z "$BUILD_URL" ]; then echo "\$BUILD_URL not set"; exit 1; fi
+if [ -z "$VERSION" ]; then
+  echo "\$VERSION not set"
+  exit 1
+fi
+if [ -z "$PREVIOUS_VERSION" ]; then
+  echo "\$PREVIOUS_VERSION not set"
+  exit 1
+fi
+if [ -z "$BRANCH" ]; then
+  echo "\$BRANCH not set"
+  exit 1
+fi
+if [ -z "$BUILD_URL" ]; then
+  echo "\$BUILD_URL not set"
+  exit 1
+fi
 
 rm -rf Distribution
-git clone -b ${BRANCH} git@github.com:neos/flow-base-distribution.git Distribution
+git clone -b "${BRANCH}" git@github.com:neos/flow-base-distribution.git Distribution
 
 if [ ! -e "composer.phar" ]; then
-    ln -s /usr/local/bin/composer.phar composer.phar
+  ln -s /usr/local/bin/composer.phar composer.phar
 fi
 
 composer.phar -v update
 Build/create-changelog.sh
-if [[ "$VERSION" == *.0 ]]
+if [[ "$VERSION" == *.0 ]]; then
   Build/create-releasenotes.sh
 fi
-Build/tag-release.sh ${VERSION} ${BRANCH} ${BUILD_URL}
+Build/tag-release.sh "${VERSION}" "${BRANCH}" "${BUILD_URL}"
 
 #
 # Create a new "Release" on Github:
