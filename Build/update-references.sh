@@ -16,7 +16,7 @@ git checkout -B "${BRANCH}" "origin/${BRANCH}"
 git reset --hard "origin/${BRANCH}"
 
 # install dependencies
-php "$(dirname "${BASH_SOURCE[0]}")/../composer.phar" update --no-interaction --no-progress --no-suggest
+php "$(dirname "${BASH_SOURCE[0]}")/../composer.phar" update --no-interaction --no-progress
 php "$(dirname "${BASH_SOURCE[0]}")/../composer.phar" require --no-interaction --no-progress neos/doctools
 php "$(dirname "${BASH_SOURCE[0]}")/../composer.phar" require --no-interaction --no-progress neos/fluid-adaptor
 
