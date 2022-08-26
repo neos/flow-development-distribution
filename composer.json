@@ -4,11 +4,11 @@
     "license": "MIT",
     "support": {
         "email": "hello@neos.io",
-        "slack": "http://slack.neos.io/",
+        "slack": "https://slack.neos.io/",
         "forum": "https://discuss.neos.io/",
         "wiki": "https://discuss.neos.io/c/the-neos-project/project-documentation",
         "issues": "https://github.com/neos/flow-development-collection/issues",
-        "docs": "http://flowframework.readthedocs.org/",
+        "docs": "https://flowframework.readthedocs.io/",
         "source": "https://github.com/neos/flow-development-distribution"
     },
     "config": {
