@@ -75,6 +75,7 @@ if [[ ${STABILITY_FLAG} ]]; then
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-schema:${VERSION}"
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-unicode:${VERSION}"
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/http-factories:${VERSION}"
+  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/fluid-adaptor:${VERSION}"
 # Remove dependencies not needed if releasing a stable version
 else
   # Remove requirements for development version of sub dependency packages
@@ -91,6 +92,7 @@ else
   php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-schema"
   php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-unicode"
   php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/http-factories"
+  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/fluid-adaptor"
 fi
 
 php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${VERSION}"
