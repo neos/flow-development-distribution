@@ -51,7 +51,7 @@ API_JSON=$(printf '{"tag_name": "%s","name": "Flow %s","body": "%s","draft": fal
 curl -H "Authorization: token ${GITHUB_TOKEN}" --data "${API_JSON}" https://api.github.com/repos/neos/flow-development-collection/releases
 
 if [[ "$VERSION" == *.0 ]]; then
-  API_JSON=$(printf '{"tag_name": "%s","name": "%s","body": "%s", "draft": false,"prerelease": false}' "${VERSION}" "${VERSION}" "Released through ${BUILD_URL}")
+  API_JSON=$(printf '{"tag_name": "%s", "name": "%s", "target_commitish":"%s", "body": "%s", "draft": false, "prerelease": false}' "${VERSION}" "${VERSION}" "${BRANCH}" "Released through ${BUILD_URL}")
   # release Neos.Behat *.0
   curl -H "Authorization: token ${GITHUB_TOKEN}" --data "${API_JSON}" https://api.github.com/repos/neos/behat/releases
   # release BuildEssentials *.0
