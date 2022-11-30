@@ -58,7 +58,7 @@ cd -
 push_branch "${BRANCH}" "Packages/Application/Neos.Welcome"
 
 # branch behat package
-cd Packages/Application/Neos.Behat && git checkout -b "${BRANCH}" "origin/${SOURCE_BRANCH}" ; cd -
+cd Packages/Application/Neos.Behat && git fetch origin && git checkout -b "${BRANCH}" "origin/${SOURCE_BRANCH}" ; cd -
 # special procedure for updating the composer.lock of Behat setup - see https://github.com/neos/behat/issues/23
 cd Packages/Application/Neos.Behat/Resources/Private/Build/Behat && composer update --no-install && git add composer.lock && git commit -m "TASK: Update composer.lock" ; cd -
 push_branch "${BRANCH}" "Packages/Application/Neos.Behat"
