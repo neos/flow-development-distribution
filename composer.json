@@ -26,7 +26,7 @@
         "neos/welcome": "8.3.x-dev",
         "phpunit/phpunit": "~9.1",
         "mikey179/vfsstream": "^1.6.10",
-        "vimeo/psalm": "~4.22.0",
+        "vimeo/psalm": "~4.30.0",
         "neos/flow": "8.3.x-dev",
         "neos/cache": "8.3.x-dev",
         "neos/eel": "8.3.x-dev",
