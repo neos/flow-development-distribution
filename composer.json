@@ -24,7 +24,7 @@
     "require": {
         "neos/flow-development-collection": "9.0.x-dev",
         "neos/welcome": "9.0.x-dev",
-        "phpunit/phpunit": "~9.1",
+        "phpunit/phpunit": "~9.6",
         "mikey179/vfsstream": "^1.6.10",
         "vimeo/psalm": "~4.30.0",
         "neos/flow": "9.0.x-dev",
