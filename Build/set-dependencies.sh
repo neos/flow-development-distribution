@@ -97,29 +97,9 @@ commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Distribution"
 
 echo "Setting packages dependencies"
 
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/cache:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/eel:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/error-messages:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/flow-log:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-arrays:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-files:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-mediatypes:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-objecthandling:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-opcodecache:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-pdo:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-schema:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/utility-unicode:~${BRANCH}.0"
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Flow require --no-update "neos/http-factories:~${BRANCH}.0"
-
-for PACKAGE in Neos.Eel Neos.FluidAdaptor Neos.Kickstarter ; do
-    php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/${PACKAGE} require --no-update "neos/flow:~${BRANCH}.0"
-done
-
-php "${COMPOSER_PHAR}" --working-dir=Packages/Framework/Neos.Kickstarter require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require --no-update "neos/flow:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Behat require --no-update "neos/flow:~${BRANCH}.0"
 
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Framework"
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Behat"
 commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Welcome"
