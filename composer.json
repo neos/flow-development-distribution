@@ -27,6 +27,7 @@
         "phpunit/phpunit": "~9.6",
         "mikey179/vfsstream": "^1.6.10",
         "vimeo/psalm": "~4.30.0",
+        "phpstan/phpstan": "^1.10.0",
         "neos/flow": "9.0.x-dev",
         "neos/cache": "9.0.x-dev",
         "neos/eel": "9.0.x-dev",
