@@ -27,7 +27,20 @@
         "phpunit/phpunit": "~9.6",
         "mikey179/vfsstream": "^1.6.10",
         "vimeo/psalm": "~4.30.0",
-        "neos/behat": "dev-main"
+        "neos/flow": "8.2.x-dev",
+        "neos/cache": "8.2.x-dev",
+        "neos/eel": "8.2.x-dev",
+        "neos/error-messages": "8.2.x-dev",
+        "neos/flow-log": "8.2.x-dev",
+        "neos/utility-arrays": "8.1.x-dev",
+        "neos/utility-files": "8.1.x-dev",
+        "neos/utility-mediatypes": "8.1.x-dev",
+        "neos/utility-objecthandling": "8.1.x-dev",
+        "neos/utility-opcodecache": "8.1.x-dev",
+        "neos/utility-pdo": "8.1.x-dev",
+        "neos/utility-schema": "8.1.x-dev",
+        "neos/utility-unicode": "8.1.x-dev",
+        "neos/http-factories": "8.1.x-dev"
     },
     "repositories": {
         "distributionPackages": {
@@ -50,6 +63,7 @@
     },
     "require-dev": {
         "neos/kickstarter": "8.2.x-dev",
-        "neos/buildessentials": "8.2.x-dev"
+        "neos/buildessentials": "8.2.x-dev",
+        "neos/behat": "8.2.x-dev"
     }
 }
