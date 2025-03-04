@@ -43,12 +43,11 @@ if [ ! -e "composer.phar" ]; then
       exit 1
   fi
 
-  php composer-setup.php --quiet
-  RESULT=$?
+  php composer-setup.php
   rm composer-setup.php
 fi
 
-composer.phar -v update || exit 1
+php composer.phar -v update || exit 1
 Build/create-changelog.sh || exit 1
 if [[ "$VERSION" == *.0 ]]; then
   Build/create-releasenotes.sh || exit 1
