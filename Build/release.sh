@@ -29,7 +29,7 @@ if [ -z "$BUILD_URL" ]; then
 fi
 
 rm -rf Distribution
-git clone -b "${BRANCH}" git@github.com:neos/flow-base-distribution.git Distribution
+git clone -b "${BRANCH}" git@github.com:neos/flow-base-distribution.git Distribution || exit 1
 
 if [ ! -e "composer.phar" ]; then
   EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
@@ -38,7 +38,7 @@ if [ ! -e "composer.phar" ]; then
 
   if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
   then
-      >&2 echo 'ERROR: Invalid installer checksum'
+      echo 'ERROR: Invalid installer checksum'
       rm composer-setup.php
       exit 1
   fi
@@ -48,12 +48,12 @@ if [ ! -e "composer.phar" ]; then
   rm composer-setup.php
 fi
 
-composer.phar -v update
-Build/create-changelog.sh
+composer.phar -v update || exit 1
+Build/create-changelog.sh || exit 1
 if [[ "$VERSION" == *.0 ]]; then
-  Build/create-releasenotes.sh
+  Build/create-releasenotes.sh || exit 1
 fi
-Build/tag-release.sh "${VERSION}" "${BRANCH}" "${BUILD_URL}"
+Build/tag-release.sh "${VERSION}" "${BRANCH}" "${BUILD_URL}" || exit 1
 
 #
 # Create a new "Release" on Github:
