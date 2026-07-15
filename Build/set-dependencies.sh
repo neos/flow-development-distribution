@@ -65,39 +65,18 @@ else
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/welcome:~${BRANCH}.0"
 fi
 
-# Require exact versions of sub dependency packages, allowing unstable
+# Allow main packages require their required sub dependency packages, allowing unstable
 if [[ ${STABILITY_FLAG} ]]; then
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/cache:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/eel:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/error-messages:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow-log:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-arrays:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-files:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-mediatypes:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-objecthandling:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-opcodecache:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-pdo:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-schema:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/utility-unicode:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/http-factories:${VERSION}"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/fluid-adaptor:${VERSION}"
-# Remove dependencies not needed if releasing a stable version
+  if [[ "$STABILITY_FLAG" =~ ^(dev|alpha|beta|RC|rc)$ ]]; then
+    COMPOSER_STABILITY_FLAG=${STABILITY_FLAG}
+  else
+    COMPOSER_STABILITY_FLAG="dev"
+  fi
+  composer config minimum-stability $COMPOSER_STABILITY_FLAG
+  composer config prefer-stable true
 else
-  # Remove requirements for development version of sub dependency packages
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/cache"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/eel"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/error-messages"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/flow-log"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-arrays"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-files"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-mediatypes"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-objecthandling"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-opcodecache"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-pdo"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-schema"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/utility-unicode"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/http-factories"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution remove --no-update "neos/fluid-adaptor"
+  composer config --unset prefer-stable
+  composer config --unset minimum-stability
 fi
 
 # Require exact versions of the main dev packages
