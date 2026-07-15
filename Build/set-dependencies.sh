@@ -24,11 +24,11 @@ if [ -z "$1" ]; then
   exit 1
 else
   if [[ $1 =~ (dev)-.+ || $1 =~ .+(@dev|.x-dev) || $1 =~ (alpha|beta|RC|rc)[0-9]+ ]]; then
-    VERSION=$1
+    EXACT_VERSION_OR_MINOR="$1"
     STABILITY_FLAG=${BASH_REMATCH[1]}
   else
     if [[ $1 =~ ([0-9]+\.[0-9]+)\.[0-9] ]]; then
-      VERSION=~${BASH_REMATCH[1]}.0
+      EXACT_VERSION_OR_MINOR="~${BASH_REMATCH[1]}.0"
     else
       echo >&2 "Version $1 could not be parsed."
       exit 1
@@ -55,8 +55,8 @@ fi
 
 echo "Setting distribution dependencies"
 
-# Require exact versions of the main packages
-php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow:${VERSION}"
+# Require exact versions or minor level of the main packages
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --no-update "neos/flow:${EXACT_VERSION_OR_MINOR}"
 
 # Require some version of the same minor level of the main packages
 if [[ ${STABILITY_FLAG} ]]; then
@@ -80,7 +80,7 @@ else
 fi
 
 # Require exact versions of the main dev packages
-php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${VERSION}"
+php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/kickstarter:${EXACT_VERSION_OR_MINOR}"
 
 # Require some version of the same minor level of main dev packages
 if [[ ${STABILITY_FLAG} ]]; then
@@ -90,7 +90,7 @@ else
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/behat:~${BRANCH}.0"
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/buildessentials:~${BRANCH}.0"
 fi
-commit_manifest_update "${BRANCH}" "${BUILD_URL}" "${VERSION}" "Distribution"
+commit_manifest_update "${BRANCH}" "${BUILD_URL}" "${EXACT_VERSION_OR_MINOR}" "Distribution"
 
 echo "Setting packages dependencies"
 
@@ -98,5 +98,5 @@ php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require -
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Welcome require --no-update "neos/fluid-adaptor:~${BRANCH}.0"
 php "${COMPOSER_PHAR}" --working-dir=Packages/Application/Neos.Behat require --no-update "neos/flow:~${BRANCH}.0"
 
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Behat"
-commit_manifest_update ${BRANCH} "${BUILD_URL}" ${VERSION} "Packages/Application/Neos.Welcome"
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${EXACT_VERSION_OR_MINOR} "Packages/Application/Neos.Behat"
+commit_manifest_update ${BRANCH} "${BUILD_URL}" ${EXACT_VERSION_OR_MINOR} "Packages/Application/Neos.Welcome"
