@@ -49,7 +49,7 @@ tag_version "${VERSION}" "${BRANCH}" "${BUILD_URL}" "Packages/Framework"
 push_branch "${BRANCH}" "Packages/Framework"
 push_tag "${VERSION}" "Packages/Framework"
 
-if [[ "${VERSION}" == "*.0" ]]; then
+if [[ "${VERSION}" == *.0 || "${VERSION}" == *-beta1 ]]; then
   echo "Tagging BuildEssentials"
   tag_version "${VERSION}" "${BRANCH}" "${BUILD_URL}" "Build/BuildEssentials"
   push_tag "${VERSION}" "Build/BuildEssentials"
