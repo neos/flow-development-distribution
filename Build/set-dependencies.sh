@@ -84,8 +84,13 @@ php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neo
 
 # Require some version of the same minor level of main dev packages
 if [[ ${STABILITY_FLAG} ]]; then
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/behat:${BRANCH}.x-dev"
-  php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/buildessentials:${BRANCH}.x-dev"
+  # using alias as "stable" so testing helper packages can declare a dependency
+  STABILITY_ALIAS=" as ${BRANCH}"
+  if [[ "${COMPOSER_STABILITY_FLAG}" == "dev" ]]; then
+    STABILITY_ALIAS=""
+  fi
+  php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/behat:${BRANCH}.x-dev${STABILITY_ALIAS}"
+  php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/buildessentials:${BRANCH}.x-dev${STABILITY_ALIAS}"
 else
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/behat:~${BRANCH}.0"
   php "${COMPOSER_PHAR}" --working-dir=Distribution require --dev --no-update "neos/buildessentials:~${BRANCH}.0"
