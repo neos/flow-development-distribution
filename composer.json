@@ -27,6 +27,8 @@
         "phpunit/phpunit": "^9.6.20",
         "mikey179/vfsstream": "^1.6.10",
         "phpstan/phpstan": "^1.10.0",
+        "squizlabs/php_codesniffer": "^3.6",
+        "rector/rector": "^1.2",
         "neos/flow": "9.2.x-dev",
         "neos/cache": "9.2.x-dev",
         "neos/eel": "9.2.x-dev",
