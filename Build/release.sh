@@ -59,5 +59,5 @@ Build/tag-release.sh "${VERSION}" "${BRANCH}" "${BUILD_URL}" || exit 1
 #
 
 EXTENDED_RELEASE_NOTES="${RELEASE_NOTES}\n\nSee [changelog](http://flowframework.readthedocs.io/en/${BRANCH}/TheDefinitiveGuide/PartV/ChangeLogs/${VERSION//.}.html) for details."
-API_JSON=$(printf '{"tag_name": "%s","name": "Flow %s","body": "%s","draft": false,"prerelease": false}' "${VERSION}" "${VERSION}" "${EXTENDED_RELEASE_NOTES}")
+API_JSON=$(jq -n --arg tag_name "${VERSION}" --arg name "Flow ${VERSION}" --arg body "${EXTENDED_RELEASE_NOTES}" --argjson draft "false" --argjson prerelease "false" '$ARGS.named')
 curl -H "Authorization: token ${GITHUB_TOKEN}" --data "${API_JSON}" https://api.github.com/repos/neos/flow-development-collection/releases
