@@ -24,8 +24,8 @@
     "require": {
         "neos/flow-development-collection": "8.4.x-dev",
         "neos/welcome": "8.4.x-dev",
-        "phpunit/phpunit": "~9.6.20",
-        "mikey179/vfsstream": "^1.6.10",
+        "phpunit/phpunit": "~11.5",
+        "mikey179/vfsstream": "^1.6.12",
         "phpstan/phpstan": "^1.10",
         "neos/flow": "8.4.x-dev",
         "neos/cache": "8.4.x-dev",
