@@ -26,7 +26,7 @@
         "neos/welcome": "9.3.x-dev",
         "phpunit/phpunit": "~11.5",
         "mikey179/vfsstream": "^1.6.12",
-        "phpstan/phpstan": "^1.10.0",
+        "phpstan/phpstan": "^2.3.5",
         "friendsofphp/php-cs-fixer": "^3.95",
         "neos/flow": "9.3.x-dev",
         "neos/cache": "9.3.x-dev",
