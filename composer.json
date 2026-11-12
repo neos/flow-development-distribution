@@ -24,10 +24,10 @@
     "require": {
         "neos/flow-development-collection": "10.0.x-dev",
         "neos/welcome": "10.0.x-dev",
-        "phpunit/phpunit": "^9.6.11",
-        "mikey179/vfsstream": "^1.6.10",
-        "vimeo/psalm": "~4.30.0",
+        "phpunit/phpunit": "~11.5",
+        "mikey179/vfsstream": "^1.6.12",
         "phpstan/phpstan": "^1.10.0",
+        "friendsofphp/php-cs-fixer": "^3.95",
         "neos/flow": "10.0.x-dev",
         "neos/cache": "10.0.x-dev",
         "neos/eel": "10.0.x-dev",
@@ -59,9 +59,7 @@
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
         "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
         "test-unit": "phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml",
-        "test-functional": "phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml",
-        "test-static": "psalm --config=Packages/Framework/psalm.xml --show-info=false",
-        "psalm-baseline-update": "psalm --config=Packages/Framework/psalm.xml --set-baseline=Packages/Framework/psalm-baseline.xml"
+        "test-functional": "phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml"
     },
     "require-dev": {
         "neos/kickstarter": "10.0.x-dev",
